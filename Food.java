@@ -80,6 +80,6 @@ public class Food
     
     public void printData()//27feb
     {
-        
+        System.out.println(name);
     }
 }
