@@ -8,31 +8,26 @@
 public class DatabaseSeller
 {
     // instance variables - replace the example below with your own
-    private String[] listSeller;
+    private static String[] listSeller;
+    private static Seller seller;
 
-    
-    public DatabaseSeller()
-    {
-        
-    }
-
-    public boolean addSeller(Seller seller)
+    public static boolean addSeller(Seller seller)
     {
         // put your code here
         return true;
     }
     
-    public boolean removeSeller(Seller seller)
+    public static boolean removeSeller(Seller seller)
     {
         return true;
     }
     
-    /*public Seller getSeller()
+    public static Seller getSeller()
     {
         return seller;
-    }*/
+    }
     
-    public String[] getListSeller()
+    public static String[] getListSeller()
     {
         return listSeller;
     }

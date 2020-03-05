@@ -12,13 +12,13 @@ public class Food
     private String name;
     private Seller seller; //27 Feb edit (27feb)
     private int price;
-    private String category;
+    private FoodCategory category;
    
 
     /**
      * Constructor for objects of class Food
      */
-    public Food(int id, String name, Seller seller, int price, String category) //27f
+    public Food(int id, String name, Seller seller, int price, FoodCategory category) //27f
     {
         this.id = id;
         this.name = name;
@@ -48,7 +48,7 @@ public class Food
        return price;
     }
     
-    public String getCategory()
+    public FoodCategory getCategory()
     {
         return category;
     }
@@ -73,13 +73,19 @@ public class Food
         this.price = price;
     }
     
-    public void setCategory(String category)
+    public void setCategory(FoodCategory category)
     {
         this.category = category;
     }
     
     public void printData()//27feb
     {
-        System.out.println(name);
+        System.out.println("    FOOD    ");
+        System.out.println("Food Id = "+ id);
+        System.out.println("name = "+ name);
+        System.out.println("Seller Name = "+ seller.getName());
+        System.out.println("Sell Location = "+ seller.getLocation().getCity());
+        System.out.println("Harga = "+ price);
+        System.out.println("category = "+ category);
     }
 }

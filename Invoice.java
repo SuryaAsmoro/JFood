@@ -13,7 +13,7 @@ public class Invoice
     private String date;
     private int totalPrice;
     private Customer customer;
-
+    
     /**
      * Constructor for objects of class Invoice
      */

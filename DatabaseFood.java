@@ -8,29 +8,24 @@
 public class DatabaseFood
 {
     // instance variables - replace the example below with your own
-    private String[] listFood;
-
-    public DatabaseFood()
-    {
-        
-    }
-
-    public boolean addFood(Food food)
+    private static String[] listFood;
+    
+    public static boolean addFood(Food food)
     {
         return true;
     }
     
-    public boolean removeFood(Food food)
+    public static boolean removeFood(Food food)
     {
        return true;
     }
     
-    public Food getFood()
+    public static Food getFood()
     {
         return null;
     }
    
-    public String[] getListFood()
+    public static String[] getListFood()
     {
         return listFood;
     }
