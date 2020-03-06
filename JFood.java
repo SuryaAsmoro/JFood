@@ -22,7 +22,7 @@ public class JFood
         Seller Surya = new Seller(0001, "Surya Asmoro", "surya.asmoro@ui.ac.id", "0813xxxxxxxx", lahir);
         Food kentang = new Food(0001, "perkedel",Surya, 7500, FoodCategory.Rice);
         Customer Luthfi = new Customer(0001, "Luthfi Rahman", "luthfi@ui.ac.id", "luth1234", "21-02-1999");
-        Invoice invoice1 = new Invoice(0001, 0001, "27-02-1010",Luthfi , 7500);
+        Invoice invoice1 = new Invoice(0001, 0001, "27-02-1010",Luthfi , 7500, InvoiceStatus.Finished);
         
         /*System.out.println(Surya.getName());
         Surya.setName("Bang Pascal");
@@ -37,6 +37,7 @@ public class JFood
         lahir.printData();*/
         
         //System.out.println(kentang.getCategory());
-        kentang.printData();
+        //kentang.printData();
+        invoice1.printData();
     }
 }
