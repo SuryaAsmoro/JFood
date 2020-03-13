@@ -10,7 +10,7 @@ public enum PaymentType
     Cashless("Cashless"), Cash("Cash");
     public String paymentType;
     
-    private PaymentType(String ptype)
+    private PaymentType(String paymentType)
     {
         this.paymentType = paymentType;
     }
