@@ -78,7 +78,11 @@ public class Food
         this.category = category;
     }
     
-    public void printData()//27feb
+    public String toString()
+    {
+        return "id = "+id+"\n"+"Nama = "+name+"\n"+"Seller = "+seller.getName()+"\n"+"City = "+seller.getLocation().getCity()+"\n"+"Price = "+price+"\n"+"Category = "+category;      
+    }
+    /*public void printData()//27feb
     {
         System.out.println("    FOOD    ");
         System.out.println("Food Id = "+ id);
@@ -87,5 +91,5 @@ public class Food
         System.out.println("Sell Location = "+ seller.getLocation().getCity());
         System.out.println("Harga = "+ price);
         System.out.println("category = "+ category);
-    }
+    }*/
 }

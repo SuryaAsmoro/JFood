@@ -5,6 +5,8 @@
  * @author (Surya Asmoro)
  * @version (27 Februari 2020)
  */
+import java.util.*;
+
 public class JFood
 {
     private String test;
@@ -22,12 +24,18 @@ public class JFood
         Seller Surya = new Seller(0001, "Surya Asmoro", "surya.asmoro@ui.ac.id", "0813xxxxxxxx", lahir);
         Food kentang = new Food(0001, "perkedel",Surya, 7500, FoodCategory.Rice);
         Food permen = new Food(0002, "Sugus",Surya, 2500, FoodCategory.Rice);
+        Calendar calndr = Calendar.getInstance();
         
-        Customer Luthfi = new Customer(0001, "Luthfi Rahman", "luthfi@ui.ac.id", "luth1234", "21-02-1999");
+        //Customer Luthfi = new Customer(0001, "Luthfi Rahman", "luthfi@ui.ac.id", "luth1234", 1999, 02, 13);
+        Customer Luthfi = new Customer(0001, "Luthfi Rahman", "luthfi@ui.ac.id", "luth1234",calndr);
+        Luthfi.setEmail("LuthfiRahman@ui.ac.id");
+        //Luthfi.setEmail("Luthfi..Rahman@ui.ac.id");
         Promo Lebaran = new Promo(0007, "AKB48", 2000, 3000, true);
         
-        CashInvoice cash01 = new CashInvoice(01, kentang, "11-03-2020", Luthfi, InvoiceStatus.Finished);
-        CashInvoice cash02 = new CashInvoice(01, kentang, "11-03-2020", Luthfi, InvoiceStatus.Ongoing, 2000);
+        System.out.println(Luthfi);
+        //Luthfi.printData();
+        //CashInvoice cash01 = new CashInvoice(01, kentang, "11-03-2020", Luthfi, InvoiceStatus.Finished);
+        //CashInvoice cash02 = new CashInvoice(01, kentang, "11-03-2020", Luthfi, InvoiceStatus.Ongoing, 2000);
         
         /*CashlessInvoice cashless01 = new CashlessInvoice(01, kentang, "11-03-2020", Luthfi, InvoiceStatus.Ongoing);
         CashlessInvoice cashless02 = new CashlessInvoice(01, kentang, "11-03-2020", Luthfi, InvoiceStatus.Finished);
@@ -58,11 +66,11 @@ public class JFood
         cashless03.setTotalPrice();
         cashless04.setTotalPrice();*/
         
-       cash01.setTotalPrice();
-       cash02.setTotalPrice();
+        //cash01.setTotalPrice();
+        //cash02.setTotalPrice();
        
-       cash01.printData();
-       cash02.printData();
+        //cash01.printData();
+        //cash02.printData();
      
        
        /*cashless01.printData();

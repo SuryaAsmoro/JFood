@@ -49,10 +49,14 @@ public class Location
         this.description = description;
     }
     
-    public void printData()
+    public String toString()
+    {
+        return "Province = "+province+"\n"+"City = "+city+"\n"+"Description = "+description;      
+    }
+    /*public void printData()
     {
         System.out.println(province);
         System.out.println(city);
         System.out.println(description);
-    }
+    }*/
 }
