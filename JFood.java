@@ -35,13 +35,23 @@ public class JFood
         Customer Luthfi = new Customer(0001, "Luthfi Rahman", "luthfi#ui.ac.id", "luth", calndr);
         Customer Luthfi2 = new Customer(0002, "Luthfi Rahman2", "luthfi2@ui.ac.id", "Luth123",2019,13,02);
         Customer Luthfi3 = new Customer(0003, "Luthfi Rahman3", "luthfi3@ui.ac.id", "Luth1234567890");
-        
-        System.out.println(Luthfi);
-        System.out.println(Luthfi2);
-        System.out.println(Luthfi3);
-        
-        //Promo Lebaran = new Promo(0007, "AKB48", 2000, 3000, true);
+        Promo Lebaran = new Promo(0007, "AKB48", 2000, 3000, true);
        
+        CashlessInvoice cashless01 = new CashlessInvoice(01, kentang, Luthfi, InvoiceStatus.Ongoing);
+        CashlessInvoice cashless02 = new CashlessInvoice(01, kentang, Luthfi, InvoiceStatus.Finished);
+        CashInvoice cash03 = new CashInvoice(03, permen, Luthfi, InvoiceStatus.Finished );
+        CashInvoice cash04 = new CashInvoice(02, kentang, Luthfi, InvoiceStatus.Finished );
+        
+        System.out.println(cashless01);
+        System.out.println(cashless02);
+        System.out.println(cash03);
+        System.out.println(cash04);
+        
+        //System.out.println(Luthfi);
+        //System.out.println(Luthfi2);
+        //System.out.println(Luthfi3);
+        
+        
         //Luthfi.printData();
         //CashInvoice cash01 = new CashInvoice(01, kentang, "11-03-2020", Luthfi, InvoiceStatus.Finished);
         //CashInvoice cash02 = new CashInvoice(01, kentang, "11-03-2020", Luthfi, InvoiceStatus.Ongoing, 2000);

@@ -5,6 +5,9 @@
  * @author (your name)
  * @version (a version number or a date)
  */
+
+import java.text.SimpleDateFormat;
+
 public class CashInvoice extends Invoice
 {
     // instance variables - replace the example below with your own
@@ -61,9 +64,11 @@ public class CashInvoice extends Invoice
     
     public String toString()
     {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        
         return "id = "+getId()
         +"\n"+"Food = "+getFood().getName()
-        +"\n"+"Date = "+getDate()
+        +"\n"+"Date = "+formatter.format(getDate().getTime())
         +"\n"+"Total Price = "+getTotalPrice()
         +"\n"+"Customer = "+getCustomer().getName()
         +"\n"+"Status = "+getInvoiceStatus()
