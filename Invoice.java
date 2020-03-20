@@ -5,25 +5,29 @@
  * @author (your name)
  * @version (a version number or a date)
  */
+import java.util.*;
+
 public abstract class Invoice
 {
     // instance variables - replace the example below with your own
     private int id;
-    private String date;
+    private Calendar date;
     private Customer customer;
     private InvoiceStatus invoiceStatus;
     private Food food;
     protected int totalPrice;
+    private int year, month, dayOfMonth;
     
     
     /**
      * Constructor for objects of class Invoice
      */
-    public Invoice(int id, Food food, String date, Customer customer, InvoiceStatus invoiceStatus)
+    public Invoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus)
     {
+        setDate();
+        
         this.id = id;
         this.food = food;
-        this.date = date;
         this.customer = customer;
         this.totalPrice = totalPrice;
         this.invoiceStatus = invoiceStatus;
@@ -39,7 +43,7 @@ public abstract class Invoice
         return food;
     }
     
-    public String getDate()
+    public Calendar getDate()
     {
         return date;
     }
@@ -71,9 +75,20 @@ public abstract class Invoice
         this.food = food;
     }
     
-    public void setDate(String date)
+    public void setDate(Calendar date)
     {
         this.date = date;
+    }
+    
+    public void setDate()
+    {
+        Calendar now = Calendar.getInstance();
+        this.date = now;
+    }
+    
+    public void setDate(int year, int month, int dayOfMonth)
+    {
+        this.date = new GregorianCalendar(year, month, dayOfMonth);
     }
     
     public abstract void setTotalPrice();
@@ -88,6 +103,10 @@ public abstract class Invoice
         this.invoiceStatus = status;
     }
     
-    public abstract void printData();
+    public String toString()
+    {
+        return "a";
+    }
+    //public abstract void printData();
     
 }

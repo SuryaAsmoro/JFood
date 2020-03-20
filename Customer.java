@@ -9,6 +9,8 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
+import java.time.LocalDateTime;
 
 public class Customer
 {
@@ -29,42 +31,30 @@ public class Customer
     {
         setEmail(email);
         setPassword(password);
+        setJoinDate(joinDate);
         
         this.id = id;
         this.name = name;
-        this.email = email;
-        this.password = password;
-        this.joinDate = joinDate;
     }
     
     public Customer(int id, String name, String email, String password, int year, int month, int dayOfMonth)
     {
         setEmail(email);
         setPassword(password);
+        setJoinDate(year, month, dayOfMonth);
         
-        /*String pattern = "yyyy-MM-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-   
-        String joinDate = simpleDateFormat.parse("year-month-dayOfMonth");
-        */
         this.id = id;
         this.name = name;
-        this.email = email;
-        this.password = password;
-        this.year = year;
-        this.month = month;
-        this.dayOfMonth = dayOfMonth;
     }
     
     public Customer(int id, String name, String email, String password)
     {
         setEmail(email);
         setPassword(password);
+        setJoinDate();
         
         this.id = id;
         this.name = name;
-        this.email = email;
-        this.password = password;
     }
     
     public int getId()
@@ -120,9 +110,9 @@ public class Customer
     
     public void setPassword(String password)
     {
-        String regex = "((?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{6,999})";
+        String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}$";//^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*{6,})*$
         Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(email);
+        Matcher matcher = pattern.matcher(password);
         
         if (matcher.matches() == true)
         {
@@ -136,20 +126,31 @@ public class Customer
     
     public void setJoinDate(Calendar JoinDate)
     {
-        
         this.joinDate = joinDate;
     }
     
     public void setJoinDate(int year, int month, int dayOfMonth)
     {
-        this.year = year;
-        this.month = month;
-        this.dayOfMonth = dayOfMonth;
+        this.joinDate = new GregorianCalendar(year, month, dayOfMonth);
+    }
+    
+    public void setJoinDate()
+    {
+        Calendar now = Calendar.getInstance();
+        this.joinDate = now;
     }
     
     public String toString()
     {
-        return "id = "+id+"\n"+"Nama = "+name+"\n"+"Email = "+email+"\n"+"Password = "+password+"\n"+"joinDate = "+joinDate;      
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        
+        if (joinDate != null){
+        return "id = "+id+"\n"+"Nama = "+name+"\n"+"Email = "+email+"\n"+"Password = "+password+"\n"+"joinDate = "+formatter.format(joinDate.getTime())+"\n"; 
+        }
+        else {
+        return "id = "+id+"\n"+"Nama = "+name+"\n"+"Email = "+email+"\n"+"Password = "+password+"\n";
+        }
+    
     }
     /*public void printData()
     {

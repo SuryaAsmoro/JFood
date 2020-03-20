@@ -14,14 +14,14 @@ public class CashInvoice extends Invoice
     /**
      * Constructor for objects of class CashlessInvoice
      */
-    public CashInvoice(int id, Food food, String date, Customer customer, InvoiceStatus invoiceStatus)
+    public CashInvoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus)
     {
-        super(id, food, date, customer, invoiceStatus);
+        super(id, food, customer, invoiceStatus);
     }
     
-    public CashInvoice(int id, Food food, String date, Customer customer, InvoiceStatus invoiceStatus, int deliveryFee)
+    public CashInvoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus, int deliveryFee)
     {
-        super(id, food, date, customer, invoiceStatus);
+        super(id, food, customer, invoiceStatus);
         this.deliveryFee = deliveryFee;
     }
     
@@ -59,7 +59,17 @@ public class CashInvoice extends Invoice
         }
     }   
     
-    public void printData()
+    public String toString()
+    {
+        return "id = "+getId()
+        +"\n"+"Food = "+getFood().getName()
+        +"\n"+"Date = "+getDate()
+        +"\n"+"Total Price = "+getTotalPrice()
+        +"\n"+"Customer = "+getCustomer().getName()
+        +"\n"+"Status = "+getInvoiceStatus()
+        +"\n"+"Payment Type = "+getPaymentType();
+    }
+    /*public void printData()
     {
         System.out.println("    -------------INVOICE-------------     ");
         System.out.println("ID = "+ getId());
@@ -71,5 +81,5 @@ public class CashInvoice extends Invoice
         System.out.println("Status = "+ getInvoiceStatus());
         System.out.println("Payment Type = "+ getPaymentType());
        
-    }
+    }*/
 }

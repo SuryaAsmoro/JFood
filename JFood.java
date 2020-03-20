@@ -5,7 +5,13 @@
  * @author (Surya Asmoro)
  * @version (27 Februari 2020)
  */
+
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
+import java.time.LocalDateTime;
 
 public class JFood
 {
@@ -26,13 +32,16 @@ public class JFood
         Food permen = new Food(0002, "Sugus",Surya, 2500, FoodCategory.Rice);
         Calendar calndr = Calendar.getInstance();
         
-        //Customer Luthfi = new Customer(0001, "Luthfi Rahman", "luthfi@ui.ac.id", "luth1234", 1999, 02, 13);
-        Customer Luthfi = new Customer(0001, "Luthfi Rahman", "luthfi@ui.ac.id", "luth1234",calndr);
-        Luthfi.setEmail("LuthfiRahman@ui.ac.id");
-        //Luthfi.setEmail("Luthfi..Rahman@ui.ac.id");
-        Promo Lebaran = new Promo(0007, "AKB48", 2000, 3000, true);
+        Customer Luthfi = new Customer(0001, "Luthfi Rahman", "luthfi#ui.ac.id", "luth", calndr);
+        Customer Luthfi2 = new Customer(0002, "Luthfi Rahman2", "luthfi2@ui.ac.id", "Luth123",2019,13,02);
+        Customer Luthfi3 = new Customer(0003, "Luthfi Rahman3", "luthfi3@ui.ac.id", "Luth1234567890");
         
         System.out.println(Luthfi);
+        System.out.println(Luthfi2);
+        System.out.println(Luthfi3);
+        
+        //Promo Lebaran = new Promo(0007, "AKB48", 2000, 3000, true);
+       
         //Luthfi.printData();
         //CashInvoice cash01 = new CashInvoice(01, kentang, "11-03-2020", Luthfi, InvoiceStatus.Finished);
         //CashInvoice cash02 = new CashInvoice(01, kentang, "11-03-2020", Luthfi, InvoiceStatus.Ongoing, 2000);
