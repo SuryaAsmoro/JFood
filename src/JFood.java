@@ -32,10 +32,11 @@ public class JFood
         Food permen = new Food(0002, "Sugus",Surya, 2500, FoodCategory.Rice);
         Calendar calndr = Calendar.getInstance();
         
-        Customer Luthfi = new Customer(0001, "Luthfi Rahman", "luthfi#ui.ac.id", "luth", calndr);
-        Customer Luthfi2 = new Customer(0002, "Luthfi Rahman2", "luthfi2@ui.ac.id", "Luth123",2019,13,02);
-        Customer Luthfi3 = new Customer(0003, "Luthfi Rahman3", "luthfi3@ui.ac.id", "Luth1234567890");
-        Promo Lebaran = new Promo(0007, "AKB48", 2000, 3000, true);
+        Customer surya = new Customer(0001, "Surya Asmoro", "surya@ui.ac.id", "luth");
+        Customer surya1 = new Customer(0002, "Surya Asmoro", "surya@ui.ac.id", "Luth123");
+        Customer pascal = new Customer(0003, "Nala Pascal", "NalaCat@ui.ac.id", "Luth1234567890");
+
+        //Promo Lebaran = new Promo(0007, "AKB48", 2000, 3000, true);
        
         /*CashlessInvoice cashless01 = new CashlessInvoice(01, kentang, Luthfi, InvoiceStatus.Ongoing);
         CashlessInvoice cashless02 = new CashlessInvoice(01, kentang, Luthfi, InvoiceStatus.Finished);
@@ -47,11 +48,10 @@ public class JFood
         System.out.println(cash03);
         System.out.println(cash04);
         */
-        System.out.println(Luthfi);
-        System.out.println(Luthfi2);
-        System.out.println(Luthfi3);
-        
-        
+        System.out.println(surya);
+        System.out.println(surya);
+        System.out.println(pascal);
+
         //Luthfi.printData();
         //CashInvoice cash01 = new CashInvoice(01, kentang, "11-03-2020", Luthfi, InvoiceStatus.Finished);
         //CashInvoice cash02 = new CashInvoice(01, kentang, "11-03-2020", Luthfi, InvoiceStatus.Ongoing, 2000);

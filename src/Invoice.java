@@ -14,7 +14,7 @@ public abstract class Invoice
     private Calendar date;
     private Customer customer;
     private InvoiceStatus invoiceStatus;
-    private Food food;
+    private ArrayList<Food> foods;
     protected int totalPrice;
     private int year, month, dayOfMonth;
     
@@ -22,7 +22,7 @@ public abstract class Invoice
     /**
      * Constructor for objects of class Invoice
      */
-    public Invoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus)
+    public Invoice(int id, ArrayList<Food> foods, Customer customer, InvoiceStatus invoiceStatus)
     {
         setDate();
         
@@ -30,7 +30,7 @@ public abstract class Invoice
         this.food = food;
         this.customer = customer;
         this.totalPrice = totalPrice;
-        this.invoiceStatus = invoiceStatus;
+        this.invoiceStatus = ongoing;
     }
 
     public int getId()
@@ -38,7 +38,7 @@ public abstract class Invoice
         return id;
     }
     
-    public Food getFood()
+    public ArrayList<Food> getFoods()
     {
         return food;
     }
@@ -70,7 +70,7 @@ public abstract class Invoice
         this.id = id;
     }
     
-    public void setIdFood(Food food)
+    public void setIdFood(ArrayList<Food> foods)
     {
         this.food = food;
     }
@@ -105,7 +105,20 @@ public abstract class Invoice
     
     public String toString()
     {
-        return "a";
+        String foodName = "";
+        for (int i = 0; i<getFoods().size(); i++)
+        {
+            Food foods = getFoods().get(i);
+            foodName += foods.getName();
+        }
+        return "id = "+id+"\n"
+                +"Foods = "foodName+"\n"
+                +"Date = "+getDate()+"\n"
+                +"Total = "+getTotalPrice()+"\n"
+                +"Customer = "+getCustomer().getName()+"\n"
+                +"Payment Type = "+getPaymentType()+"\n";
+                +"Status = "+getInvoiceStatus()+"\n";
+
     }
     //public abstract void printData();
     

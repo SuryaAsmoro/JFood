@@ -5,30 +5,51 @@
  * @author (your name)
  * @version (a version number or a date)
  */
+import java.util.*;
 public class DatabaseSeller
 {
     // instance variables - replace the example below with your own
-    private static String[] listSeller;
-    private static Seller seller;
+    private static ArrayList<Seller> SELLER_DATABASE = new ArrayList<>();
+    //ArrayList SELLER_DATABASE = new ArrayList();
+    private static int lastId;
+
+    public static ArrayList<Seller> getSellerDatabase()
+    {
+        return SELLER_DATABASE;
+    }
+
+    public static int getLastId()
+    {
+        return lastId;
+    }
+
+    public static Seller getSellerById(int id)
+    {
+        for (int i=0;i<SELLER_DATABASE.size();i++)
+        {
+            Seller seller = SELLER_DATABASE.get(id);
+            if (seller.getId() == id) {
+                return seller;
+            }
+        }
+        return null;
+    }
 
     public static boolean addSeller(Seller seller)
     {
-        // put your code here
+        SELLER_DATABASE.add(seller);
+        lastId = SELLER_DATABASE.indexOf(seller);
         return true;
     }
     
-    public static boolean removeSeller(Seller seller)
+    public static boolean removeSeller(int id)
     {
-        return true;
+        Seller seller = SELLER_DATABASE.get(id);
+        if (seller != null) {
+            SELLER_DATABASE.remove(seller);
+            return true;
+        }
+        return false;
     }
-    
-    public static Seller getSeller()
-    {
-        return seller;
-    }
-    
-    public static String[] getListSeller()
-    {
-        return listSeller;
-    }
+
 }
