@@ -80,7 +80,7 @@ public class Food
     
     public String toString()
     {
-        return "id = "+id+"\n"+"Nama = "+name+"\n"+"Seller = "+seller.getName()+"\n"+"City = "+seller.getLocation().getCity()+"\n"+"Price = "+price+"\n"+"Category = "+category;      
+        return "id = "+id+"\n"+"Nama = "+name+"\n"+"Seller = "+seller.getName()+"\n"+"City = "+seller.getLocation().getCity()+"\n"+"Price = "+price+"\n"+"Category = "+category+"\n";
     }
     /*public void printData()//27feb
     {

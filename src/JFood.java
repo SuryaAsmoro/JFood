@@ -45,18 +45,43 @@ public class JFood
         Calendar calndr = Calendar.getInstance();
 
         //Customers
-        Customer surya = new Customer(0001, "Surya Asmoro", "surya@ui.ac.id", "luth");
-        Customer surya1 = new Customer(0002, "Surya Asmoro", "surya@ui.ac.id", "Luth123");
-        Customer pascal = new Customer(0003, "Nala Pascal", "NalaCat@ui.ac.id", "Luth1234567890");
+        Customer surya = new Customer(01, "Surya Asmoro", "surya@ui.ac.id", "luth123");
+        Customer surya1 = new Customer(02, "Surya Asmoro", "surya@ui.ac.id", "Luth123");
+        Customer pascal = new Customer(03, "Nala Pascal", "NalaCat@ui.ac.id", "Luth1234567890");
         DatabaseCustomer.addCustomer(surya);
         DatabaseCustomer.addCustomer(surya1);
         DatabaseCustomer.addCustomer(pascal);
 
-        System.out.println(DatabaseCustomer.getCustomerDatabase());
-        System.out.println(DatabaseFood.getFoodByCategory(FoodCategory.Rice));
+        //PROMOS
+        Promo Lebaran = new Promo(01, "LBR48", 2000, 3000, false);
+        Promo Korona = new Promo(02, "LBR48", 4000, 5000, true);
+        DatabasePromo.addPromo(Lebaran);
+        DatabasePromo.addPromo(Korona);
 
-        //Promo Lebaran = new Promo(0007, "AKB48", 2000, 3000, true);
-       
+        //CashInvoices
+        CashInvoice cash01 = new CashInvoice(01, DatabaseFood.getFoodDatabase(), DatabaseCustomer.getCustomerById(01), InvoiceStatus.Ongoing, 1000);
+        CashlessInvoice cashless01 = new CashlessInvoice(02, DatabaseFood.getFoodDatabase(), DatabaseCustomer.getCustomerById(01), Lebaran, InvoiceStatus.Ongoing );
+        //DatabaseInvoice.getInvoiceByCustomer(01).setTotalPrice();
+        cashless01.setTotalPrice();
+        DatabaseInvoice.addInvoice(cash01);
+        DatabaseInvoice.addInvoice(cashless01);
+        DatabaseInvoice.changeInvoice(01, InvoiceStatus.Finished);
+
+        CashlessInvoice cashless02 = new CashlessInvoice(03, DatabaseFood.getFoodDatabase(), DatabaseCustomer.getCustomerById(02), Lebaran, InvoiceStatus.Ongoing );
+        DatabasePromo.getPromoById(01).setActive(true);
+        //DatabaseInvoice.getInvoiceByCustomer(02).setTotalPrice();
+        cashless02.setTotalPrice();
+        DatabaseInvoice.addInvoice(cashless02);
+
+
+        //System.out.println(DatabaseCustomer.getCustomerDatabase());
+        //System.out.println(DatabaseFood.getFoodByCategory(FoodCategory.Rice));
+
+        System.out.println(DatabasePromo.getPromoDatabase());
+        System.out.println(DatabaseInvoice.getInvoiceDatabase());
+
+
+
         /*CashlessInvoice cashless01 = new CashlessInvoice(01, kentang, Luthfi, InvoiceStatus.Ongoing);
         CashlessInvoice cashless02 = new CashlessInvoice(01, kentang, Luthfi, InvoiceStatus.Finished);
         CashInvoice cash03 = new CashInvoice(03, permen, Luthfi, InvoiceStatus.Finished );
@@ -72,7 +97,7 @@ public class JFood
         System.out.println(pascal);
         */
         //Luthfi.printData();
-        //CashInvoice cash01 = new CashInvoice(01, kentang, "11-03-2020", Luthfi, InvoiceStatus.Finished);
+
         //CashInvoice cash02 = new CashInvoice(01, kentang, "11-03-2020", Luthfi, InvoiceStatus.Ongoing, 2000);
         
         /*CashlessInvoice cashless01 = new CashlessInvoice(01, kentang, "11-03-2020", Luthfi, InvoiceStatus.Ongoing);
