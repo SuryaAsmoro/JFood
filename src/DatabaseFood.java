@@ -68,7 +68,7 @@ public class DatabaseFood
     {
         if (FOOD_DATABASE.add(food))
         {
-            lastId = FOOD_DATABASE.indexOf(food);
+            lastId = food.getId();
             return true;
         }
         return false;

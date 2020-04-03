@@ -7,24 +7,26 @@
  */
 
 import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class CashlessInvoice extends Invoice
 {
     // instance variables - replace the example below with your own
     private static final PaymentType PAYMENT_TYPE = PaymentType.Cashless ;
     private Promo promo;
+    private int total = 0;
 
     /**
      * Constructor for objects of class CashlessInvoice
      */
-    public CashlessInvoice(int id, ArrayList<Food> foods, Customer customer)
+    public CashlessInvoice(int id, ArrayList<Food> foods, Customer customer, InvoiceStatus invoiceStatus)
     {
-        super(id, food, customer);
+        super(id, foods, customer, invoiceStatus);
     }
     
-    public CashlessInvoice(int id, ArrayList<Food> foods, Customer customer, Promo promo)
+    public CashlessInvoice(int id, ArrayList<Food> foods, Customer customer, Promo promo, InvoiceStatus invoiceStatus)
     {
-        super(id, food, customer);
+        super(id, foods, customer, invoiceStatus);
         this.promo = promo;
     }
     
@@ -32,7 +34,7 @@ public class CashlessInvoice extends Invoice
     /**
      * An example of a method - replace this comment with your own
      *
-     * @param  y  a sample parameter for a method
+     //* @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
     public PaymentType getPaymentType()
@@ -52,22 +54,33 @@ public class CashlessInvoice extends Invoice
     
     public void setTotalPrice()
     {
-        if ((promo != null)&&(promo.getActive()==true) && (getFood().getPrice() > promo.getMinPrice()))
+        ArrayList<Food> listFoods = new ArrayList<>();
+        for (Food food: listFoods)
         {
-            super.totalPrice = (getFood().getPrice())-(promo.getDiscount());
+            total += food.getPrice();
+        }
+        if ((promo != null)&&(promo.getActive()== true) && total > promo.getMinPrice())
+        {
+            super.totalPrice = (total)-(promo.getDiscount());
         }
         else
         {
-            super.totalPrice = getFood().getPrice();
+            super.totalPrice = total;
         }
     }   
     
     public String toString()
     {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String foodName = "";
+        for (int i = 0; i<getFoods().size(); i++)
+        {
+            Food foods = getFoods().get(i);
+            foodName += foods.getName();
+        }
         
         return "id = "+getId()
-        +"\n"+"Nama = "+getFood().getName()
+        +"\n"+"Nama = "+foodName
         +"\n"+"Date = "+formatter.format(getDate().getTime())
         +"\n"+"Total Price = "+getTotalPrice()
         +"\n"+"Customer = "+getCustomer().getName()

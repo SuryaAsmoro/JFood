@@ -46,7 +46,7 @@ public class DatabaseCustomer
     {
         if (CUSTOMER_DATABASE.add(customer))
         {
-            lastId = CUSTOMER_DATABASE.indexOf(customer);
+            lastId = customer.getId();
             return true;
         }
         return false;

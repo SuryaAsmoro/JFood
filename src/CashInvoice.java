@@ -7,24 +7,26 @@
  */
 
 import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class CashInvoice extends Invoice
 {
     // instance variables - replace the example below with your own
     private static final PaymentType PAYMENT_TYPE = PaymentType.Cash ;
+    private int total = 0;
     private int deliveryFee;
 
     /**
      * Constructor for objects of class CashlessInvoice
      */
-    public CashInvoice(int id, ArrayList<Food> foods, Customer customer)
+    public CashInvoice(int id, ArrayList<Food> foods, Customer customer, InvoiceStatus invoiceStatus)
     {
-        super(id, food, customer);
+        super(id, foods, customer, invoiceStatus);
     }
     
-    public CashInvoice(int id, ArrayList<Food> foods, Customer customer, int deliveryFee)
+    public CashInvoice(int id, ArrayList<Food> foods, Customer customer,InvoiceStatus invoiceStatus, int deliveryFee)
     {
-        super(id, food, customer);
+        super(id, foods, customer, invoiceStatus);
         this.deliveryFee = deliveryFee;
     }
     
@@ -32,7 +34,7 @@ public class CashInvoice extends Invoice
     /**
      * An example of a method - replace this comment with your own
      *
-     * @param  y  a sample parameter for a method
+    // * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
     public PaymentType getPaymentType()
@@ -52,22 +54,27 @@ public class CashInvoice extends Invoice
     
     public void setTotalPrice()
     {
-        if (deliveryFee >= 0)
+        ArrayList<Food> listFoods = super.getFoods();
+        for (Food food: listFoods)
         {
-            super.totalPrice = (getFood().getPrice()+deliveryFee);
+            total += food.getPrice();
+        }
+        if (deliveryFee > 0)
+        {
+            super.totalPrice = total+deliveryFee;
         }
         else
         {
-            super.totalPrice = getFood().getPrice();
+            super.totalPrice = total;
         }
     }   
-    
+
     public String toString()
     {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         
         return "id = "+getId()
-        +"\n"+"Food = "+getFood().getName()
+    //    +"\n"+"Food = "+getFood().getName()
         +"\n"+"Date = "+formatter.format(getDate().getTime())
         +"\n"+"Total Price = "+getTotalPrice()
         +"\n"+"Customer = "+getCustomer().getName()

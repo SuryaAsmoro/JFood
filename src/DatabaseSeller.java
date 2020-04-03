@@ -27,7 +27,7 @@ public class DatabaseSeller
     {
         for (int i=0;i<SELLER_DATABASE.size();i++)
         {
-            Seller seller = SELLER_DATABASE.get(id);
+            Seller seller = SELLER_DATABASE.get(i);
             if (seller.getId() == id) {
                 return seller;
             }
@@ -38,17 +38,21 @@ public class DatabaseSeller
     public static boolean addSeller(Seller seller)
     {
         SELLER_DATABASE.add(seller);
-        lastId = SELLER_DATABASE.indexOf(seller);
+        lastId = seller.getId();
         return true;
     }
     
     public static boolean removeSeller(int id)
     {
-        Seller seller = SELLER_DATABASE.get(id);
-        if (seller != null) {
-            SELLER_DATABASE.remove(seller);
-            return true;
+        for (int i=0; i<SELLER_DATABASE.size();i++)
+        {
+            Seller seller = SELLER_DATABASE.get(i);
+            if (seller.getId() == id) {
+                SELLER_DATABASE.remove(seller);
+                return true;
+            }
         }
+
         return false;
     }
 

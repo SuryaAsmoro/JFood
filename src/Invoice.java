@@ -27,10 +27,10 @@ public abstract class Invoice
         setDate();
         
         this.id = id;
-        this.food = food;
+        this.foods = foods;
         this.customer = customer;
-        this.totalPrice = totalPrice;
-        this.invoiceStatus = ongoing;
+        //this.totalPrice = totalPrice;
+        this.invoiceStatus = invoiceStatus;
     }
 
     public int getId()
@@ -40,7 +40,7 @@ public abstract class Invoice
     
     public ArrayList<Food> getFoods()
     {
-        return food;
+        return foods;
     }
     
     public Calendar getDate()
@@ -72,7 +72,7 @@ public abstract class Invoice
     
     public void setIdFood(ArrayList<Food> foods)
     {
-        this.food = food;
+        this.foods = foods;
     }
     
     public void setDate(Calendar date)
@@ -112,11 +112,11 @@ public abstract class Invoice
             foodName += foods.getName();
         }
         return "id = "+id+"\n"
-                +"Foods = "foodName+"\n"
+                +"Foods = "+foodName+"\n"
                 +"Date = "+getDate()+"\n"
                 +"Total = "+getTotalPrice()+"\n"
                 +"Customer = "+getCustomer().getName()+"\n"
-                +"Payment Type = "+getPaymentType()+"\n";
+                +"Payment Type = "+getPaymentType()+"\n"
                 +"Status = "+getInvoiceStatus()+"\n";
 
     }

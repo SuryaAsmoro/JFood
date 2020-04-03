@@ -53,7 +53,7 @@ public class DatabasePromo
     public static boolean addPromo(Promo promo)
     {
         PROMO_DATABASE.add(promo);
-        lastId = PROMO_DATABASE.indexOf(promo);
+        lastId = promo.getId();
         return true;
     }
 
