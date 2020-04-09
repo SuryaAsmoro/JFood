@@ -26,61 +26,77 @@ public class JFood
 
     public static void main(String [] args)
     {
-        //Locations
+        //Locations ==============================
         Location lahir = new Location("Jakarta", "DKI", "Di rumah sakit");
 
-        //Sellers
+        //Sellers ================================
         Seller Surya = new Seller(0001, "Surya Asmoro", "surya.asmoro@ui.ac.id", "0813xxxxxxxx", lahir);
         DatabaseSeller.addSeller(Surya);
 
-        //Foods
+        //Foods ==================================
         Food kentang = new Food(0001, "perkedel",Surya, 7500, FoodCategory.Rice);
         Food permen = new Food(0002, "Sugus",Surya, 2500, FoodCategory.Snacks);
-        Food nasi = new Food(0003, "nasi jagung",Surya, 8000, FoodCategory.Rice);
+        //Food nasi = new Food(0003, "nasi jagung",Surya, 8000, FoodCategory.Rice);
         DatabaseFood.addFood(kentang);
         DatabaseFood.addFood(permen);
-        DatabaseFood.addFood(nasi);
+        //DatabaseFood.addFood(nasi);
 
-        //Calendars
+
+        //Calendars =============================
         Calendar calndr = Calendar.getInstance();
 
-        //Customers
-        Customer surya = new Customer(01, "Surya Asmoro", "surya@ui.ac.id", "luth123");
-        Customer surya1 = new Customer(02, "Surya Asmoro", "surya@ui.ac.id", "Luth123");
-        Customer pascal = new Customer(03, "Nala Pascal", "NalaCat@ui.ac.id", "Luth1234567890");
-        DatabaseCustomer.addCustomer(surya);
-        DatabaseCustomer.addCustomer(surya1);
-        DatabaseCustomer.addCustomer(pascal);
+        //Customers =============================
+        Customer surya = new Customer(DatabaseCustomer.getLastId()+1, "Surya Asmoro", "surya@ui.ac.id", "luth123");
+        Customer surya1 = new Customer(DatabaseCustomer.getLastId()+1, "Surya Asmoro YP", "surya.asm@ui.ac.id", "Luth123");
+        Customer pascal = new Customer(DatabaseCustomer.getLastId()+1, "Nala Pascal", "NalaCat@ui.ac.id", "Luthaasasf67890");
+        Customer pascal1 = new Customer(DatabaseCustomer.getLastId()+1, "Nala Pascal AA", "NalaCat@ui.ac.id", "Luth567890");
+        try {
+            DatabaseCustomer.addCustomer(surya);
+            DatabaseCustomer.addCustomer(surya1);
+            DatabaseCustomer.addCustomer(pascal);
+            DatabaseCustomer.addCustomer(pascal1);
+            }
+        catch (EmailAlreadyExistsException e){
+            System.out.println(e.getMessage());
+        }
 
-        //PROMOS
+        //PROMOS ===============================
         Promo Lebaran = new Promo(01, "LBR48", 2000, 3000, false);
         Promo Korona = new Promo(02, "LBR48", 4000, 5000, true);
-        DatabasePromo.addPromo(Lebaran);
-        DatabasePromo.addPromo(Korona);
+        try {
+            DatabasePromo.addPromo(Lebaran);
+            DatabasePromo.addPromo(Korona);
+        }
+        catch (PromoCodeAlreadyExistsException e)
+        {
+            System.out.println(e.getMessage());
+        }
 
-        //CashInvoices
-        CashInvoice cash01 = new CashInvoice(01, DatabaseFood.getFoodDatabase(), DatabaseCustomer.getCustomerById(01), InvoiceStatus.Ongoing, 1000);
+        //CashInvoices ==========================
+        /*CashInvoice cash01 = new CashInvoice(01, DatabaseFood.getFoodDatabase(), DatabaseCustomer.getCustomerById(01), InvoiceStatus.Ongoing, 1000);
         CashlessInvoice cashless01 = new CashlessInvoice(02, DatabaseFood.getFoodDatabase(), DatabaseCustomer.getCustomerById(01), Lebaran, InvoiceStatus.Ongoing );
         //DatabaseInvoice.getInvoiceByCustomer(01).setTotalPrice();
         cashless01.setTotalPrice();
         DatabaseInvoice.addInvoice(cash01);
         DatabaseInvoice.addInvoice(cashless01);
         DatabaseInvoice.changeInvoice(01, InvoiceStatus.Finished);
+*/
 
-        CashlessInvoice cashless02 = new CashlessInvoice(03, DatabaseFood.getFoodDatabase(), DatabaseCustomer.getCustomerById(02), Lebaran, InvoiceStatus.Ongoing );
-        DatabasePromo.getPromoById(01).setActive(true);
+
+
+        // OBSOLETES =============================
+        //CashlessInvoice cashless02 = new CashlessInvoice(03, DatabaseFood.getFoodDatabase(), DatabaseCustomer.getCustomerById(02), Lebaran, InvoiceStatus.Ongoing );
+        //DatabasePromo.getPromoById(01).setActive(true);
         //DatabaseInvoice.getInvoiceByCustomer(02).setTotalPrice();
-        cashless02.setTotalPrice();
-        DatabaseInvoice.addInvoice(cashless02);
+        //cashless02.setTotalPrice();
+        //DatabaseInvoice.addInvoice(cashless02);
 
 
         //System.out.println(DatabaseCustomer.getCustomerDatabase());
         //System.out.println(DatabaseFood.getFoodByCategory(FoodCategory.Rice));
 
-        System.out.println(DatabasePromo.getPromoDatabase());
-        System.out.println(DatabaseInvoice.getInvoiceDatabase());
-
-
+        //System.out.println(DatabasePromo.getPromoDatabase());
+        //System.out.println(DatabaseInvoice.getInvoiceDatabase());
 
         /*CashlessInvoice cashless01 = new CashlessInvoice(01, kentang, Luthfi, InvoiceStatus.Ongoing);
         CashlessInvoice cashless02 = new CashlessInvoice(01, kentang, Luthfi, InvoiceStatus.Finished);

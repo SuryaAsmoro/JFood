@@ -23,7 +23,7 @@ public class DatabaseFood
         return lastId;
     }
 
-    public static Food getFoodById(int id)
+    public static Food getFoodById(int id)throws FoodNotFoundException
     {
         for (int i=0; i<FOOD_DATABASE.size();i++)
         {
@@ -74,17 +74,16 @@ public class DatabaseFood
         return false;
     }
     
-    public static boolean removeFood(Food food)
+    public static boolean removeFood(int id)throws FoodNotFoundException
     {
-        for (int i=0;i<FOOD_DATABASE.size();i++)
-        {
-            if (FOOD_DATABASE.get(i) == food)
-            {
-                FOOD_DATABASE.remove(food);
-                return true;
+
+        for (int i = 0; i < FOOD_DATABASE.size(); i++) {
+            if (FOOD_DATABASE.get(i).getId() == id) {
+                    FOOD_DATABASE.remove(i);
+                    return true;
             }
         }
-       return false;
+        throw new FoodNotFoundException(id);
     }
 
 }

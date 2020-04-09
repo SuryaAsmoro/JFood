@@ -29,8 +29,7 @@ public class DatabaseCustomer
         return lastId;
     }
 
-    public static Customer getCustomerById(int id)
-    {
+    public static Customer getCustomerById(int id) throws CustomerNotFoundException {
         for (int i=0;i<CUSTOMER_DATABASE.size();i++)
         {
             Customer customer = CUSTOMER_DATABASE.get(i);
@@ -39,30 +38,33 @@ public class DatabaseCustomer
                 return customer;
             }
         }
-        return null;
+        throw new CustomerNotFoundException(id);
     }
 
-    public static boolean addCustomer(Customer customer)
-    {
-        if (CUSTOMER_DATABASE.add(customer))
-        {
-            lastId = customer.getId();
-            return true;
+    public static boolean addCustomer(Customer customer) throws EmailAlreadyExistsException {
+        for (int i=0; i<CUSTOMER_DATABASE.size();i++) {
+            if (CUSTOMER_DATABASE.get(i).getEmail().equals(customer.getEmail())) {
+                throw new EmailAlreadyExistsException(customer);
+            }
         }
-        return false;
+
+        CUSTOMER_DATABASE.add(customer);
+        lastId = customer.getId();
+        return true;
     }
+
     
-    public static boolean removeCustomer(Customer customer)
+    public static boolean removeCustomer(int id)throws CustomerNotFoundException
     {
         for (int i=0;i<CUSTOMER_DATABASE.size();i++)
         {
-            if(CUSTOMER_DATABASE.get(i) == customer)
+            if(CUSTOMER_DATABASE.get(i).getId() == id)
             {
-                CUSTOMER_DATABASE.remove(customer);
+                CUSTOMER_DATABASE.remove(i);
                 return true;
             }
         }
-        return false;
+        throw new CustomerNotFoundException(id);
     }
 
 }
