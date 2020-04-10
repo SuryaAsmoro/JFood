@@ -33,7 +33,7 @@ public class DatabaseFood
                 return food;
             }
         }
-        return null;
+        throw new FoodNotFoundException(id);
     }
 
     public static ArrayList<Food> getFoodBySeller(int sellerid)

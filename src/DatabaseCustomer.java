@@ -11,7 +11,7 @@ public class DatabaseCustomer
 {
     // instance variables - replace the example below with your own
     private static ArrayList<Customer> CUSTOMER_DATABASE = new ArrayList<>();
-    private static int lastId;
+    private static int lastId = 0;
 
     /**
      * An example of a method - replace this comment with your own
@@ -47,9 +47,8 @@ public class DatabaseCustomer
                 throw new EmailAlreadyExistsException(customer);
             }
         }
-
+        customer.setId(1+ lastId++);
         CUSTOMER_DATABASE.add(customer);
-        lastId = customer.getId();
         return true;
     }
 

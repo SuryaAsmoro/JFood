@@ -6,6 +6,8 @@
  * @version (27 Februari 2020)
  */
 
+import javax.xml.crypto.Data;
+import java.sql.SQLOutput;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -73,19 +75,82 @@ public class JFood
         }
 
         //CashInvoices ==========================
-        /*CashInvoice cash01 = new CashInvoice(01, DatabaseFood.getFoodDatabase(), DatabaseCustomer.getCustomerById(01), InvoiceStatus.Ongoing, 1000);
-        CashlessInvoice cashless01 = new CashlessInvoice(02, DatabaseFood.getFoodDatabase(), DatabaseCustomer.getCustomerById(01), Lebaran, InvoiceStatus.Ongoing );
-        //DatabaseInvoice.getInvoiceByCustomer(01).setTotalPrice();
-        cashless01.setTotalPrice();
-        DatabaseInvoice.addInvoice(cash01);
-        DatabaseInvoice.addInvoice(cashless01);
-        DatabaseInvoice.changeInvoice(01, InvoiceStatus.Finished);
-*/
+        //CashInvoice cash01 = new CashInvoice(01, DatabaseFood.getFoodDatabase(), DatabaseCustomer.getCustomerById(01), InvoiceStatus.Ongoing, 1000);
 
+        //Cashless Invoices ======================
+        //CashlessInvoice cashless01 = new CashlessInvoice(02, DatabaseFood.getFoodDatabase(), DatabaseCustomer.getCustomerById(01), Lebaran, InvoiceStatus.Ongoing );
+        //CashlessInvoice cashless02 = new CashlessInvoice(03, DatabaseFood.getFoodDatabase(), DatabaseCustomer.getCustomerById(02), Lebaran, InvoiceStatus.Ongoing );
 
+        //General ================================
+        /*try {
+            DatabaseSeller.getSellerById(01);
+        }
+        catch (SellerNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            DatabaseCustomer.getCustomerById(01);
+        }
+        catch (CustomerNotFoundException e){
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            DatabasePromo.getPromoById(01);
+        }
+        catch (PromoNotFoundException e){
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            DatabaseFood.getFoodById(01);
+        }
+        catch (FoodNotFoundException e){
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("================= YANG MASUK DATABASE PROMO =================");
+        System.out.println(DatabasePromo.getPromoDatabase()+"\n");
+
+        System.out.println("================= YANG MASUK DATABASE CUSTOMER ==================");
+        System.out.println(DatabaseCustomer.getCustomerDatabase()+"\n");
+        */
+        ArrayList<Food> food1 = new ArrayList<Food>();
+        ArrayList<Food> food2 = new ArrayList<Food>();
+        try {
+            food1.add(DatabaseFood.getFoodById(01));
+            food1.add(DatabaseFood.getFoodById(02));
+            food1.add(DatabaseFood.getFoodById(001));
+
+            food2.add(DatabaseFood.getFoodById(01));
+            food2.add(DatabaseFood.getFoodById(02));
+        }
+        catch (FoodNotFoundException e){
+            System.out.println(e.getMessage());
+        }
+        try {
+            DatabaseInvoice.addInvoice(new CashInvoice(DatabaseInvoice.getLastId() + 1, food1, DatabaseCustomer.getCustomerById(01), InvoiceStatus.Ongoing, 1000));
+            DatabaseInvoice.addInvoice(new CashInvoice(DatabaseInvoice.getLastId() + 1, food2, DatabaseCustomer.getCustomerById(02), InvoiceStatus.Ongoing, 1000));
+            DatabaseInvoice.addInvoice(new CashInvoice(DatabaseInvoice.getLastId() + 1, food1, DatabaseCustomer.getCustomerById(03), InvoiceStatus.Ongoing, 2000));
+        }
+        catch (CustomerNotFoundException e){
+            System.out.println(e.getMessage());
+        }
+
+        int DELAY = 1000;
+        for (Invoice invoices : DatabaseInvoice.getInvoiceDatabase()){
+            new Thread(new PriceCalculator(invoices, DELAY)).start();
+        }
+
+        System.out.println("List Invoices : \n");
+        for (Invoice invoice : DatabaseInvoice.getInvoiceDatabase()){
+            invoice.setTotalPrice();
+            System.out.println("\n"+invoice);
+        }
 
         // OBSOLETES =============================
-        //CashlessInvoice cashless02 = new CashlessInvoice(03, DatabaseFood.getFoodDatabase(), DatabaseCustomer.getCustomerById(02), Lebaran, InvoiceStatus.Ongoing );
+
         //DatabasePromo.getPromoById(01).setActive(true);
         //DatabaseInvoice.getInvoiceByCustomer(02).setTotalPrice();
         //cashless02.setTotalPrice();
