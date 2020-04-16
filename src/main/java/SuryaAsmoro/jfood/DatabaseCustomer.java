@@ -53,8 +53,7 @@ public class DatabaseCustomer
     }
 
     
-    public static boolean removeCustomer(int id)throws CustomerNotFoundException
-    {
+    public static boolean removeCustomer(int id)throws CustomerNotFoundException {
         for (int i=0;i<CUSTOMER_DATABASE.size();i++)
         {
             if(CUSTOMER_DATABASE.get(i).getId() == id)
@@ -64,6 +63,15 @@ public class DatabaseCustomer
             }
         }
         throw new CustomerNotFoundException(id);
+    }
+
+    public static Customer CustomerLogin(String email, String password) throws CustomerNotFoundException{
+        for (int i=0; i<CUSTOMER_DATABASE.size(); i++){
+            if(CUSTOMER_DATABASE.get(i).getEmail().equals(email) && CUSTOMER_DATABASE.get(i).getPassword().equals(password)){
+                return CUSTOMER_DATABASE.get(i);
+            }
+        }
+        throw new CustomerNotFoundException(99);
     }
 
 }
